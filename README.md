@@ -7,14 +7,15 @@ so I followed the original approach of the dropdown
 
 ## Where is the docker configuration?
 You can find the docker configuration [`here`](https://gist.github.com/petrosg/a970651bbfa0b77b474e397707c5fd81)
-The reason they are provided seperately is because I had a hard time deploying this on gigalixir otherwise. 
+The reason they are provided seperately is because I had a hard time deploying this on gigalixir otherwise.
 
-My folder structure on my local machine looks like this 
-|- root/
-| - docker-compose.yml
-| - Dockerfile
-| - pomodoro/
-      ^--------- this is the git repo
+My folder structure on my local machine looks like this
+  * root/
+    * docker-compose.yml
+    * Dockerfile
+    * pomodoro/
+      * this git repo...
+
 
 ## Some notes
   * You are welcome to use the docker configuration included in the projects
