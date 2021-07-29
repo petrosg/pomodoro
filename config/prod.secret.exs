@@ -12,7 +12,7 @@ database_url =
     """
 
 config :pomodoro, Pomodoro.Repo,
-  adapter: Ecto.Adapters.Postgres
+  adapter: Ecto.Adapters.Postgres,
   database: ""
   ssl: true,
   url: database_url,
