@@ -4,7 +4,7 @@ This project was created based on a tutorial about dynamically refreshing a live
 Originally, the intention was to use buttons to set the time, but there were issues with the timer resetting. As a result, the approach was changed to using a dropdown menu.
 
 ## Docker Configuration
-This has now been removed in favor of asdf configurations (see (tool-versions)[./.tool-versions])
+This has now been removed in favor of asdf configurations (see [tool-versions](./.tool-versions) )
 
 ## Setup
 Assuming you are using `asdf` for version configuration:
