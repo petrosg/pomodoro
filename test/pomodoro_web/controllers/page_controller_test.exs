@@ -1,8 +1,24 @@
 defmodule PomodoroWeb.PageControllerTest do
-  use PomodoroWeb.ConnCase
+  use PomodoroWeb.ConnCase, async: true
+  import Phoenix.LiveViewTest
 
-  test "GET /", %{conn: conn} do
-    conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
+  describe "PageLive" do
+    test "renders the index page", %{conn: conn} do
+      {:ok, _view, html} = live(conn, "/")
+      assert html =~ "Pomodoro Timer"
+    end
+
+    test "starts a new pomodoro timer", %{conn: conn} do
+      {:ok, view, _html} = live(conn, "/")
+      assert render(view) =~ "<span> Remaining Time: </span> 10 minutes"
+    end
+
+    test "change timer starts a new pomodoro timer", %{conn: conn} do
+      {:ok, view, _html} = live(conn, "/")
+      assert render(view) =~ "<span> Remaining Time: </span> 10 minutes"
+
+      assert view |> element("form")
+          |> render_change(%{"timer" => 25 * 60 }) =~ "<span> Remaining Time: </span> 25 minutes"
+    end
   end
 end

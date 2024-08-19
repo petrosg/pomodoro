@@ -18,7 +18,7 @@ You can now visit [`localhost:4040`](http://localhost:4000) in your browser.
 Ready to run in production? Please [check the deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
 ## ToDo (maybe)
-  - [ ] Explore Unit Testing.
+  - [x] Explore Unit Testing.
   - [ ] Explore using buttons instead of dropdowns.
   - [ ] Change colors when busy/on break.
   - [ ] Play an audio file when the timer reaches 0.
