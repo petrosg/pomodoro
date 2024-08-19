@@ -19,25 +19,19 @@ defmodule PomodoroWeb.ConnCase do
 
   using do
     quote do
+      # The default endpoint for testing
+      @endpoint PomodoroWeb.Endpoint
+
+      use PomodoroWeb, :verified_routes
+
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
       import PomodoroWeb.ConnCase
-
-      alias PomodoroWeb.Router.Helpers, as: Routes
-
-      # The default endpoint for testing
-      @endpoint PomodoroWeb.Endpoint
     end
   end
 
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Pomodoro.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Pomodoro.Repo, {:shared, self()})
-    end
-
+  setup _tags do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

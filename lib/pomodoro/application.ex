@@ -5,18 +5,16 @@ defmodule Pomodoro.Application do
 
   use Application
 
+  @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      Pomodoro.Repo,
-      # Start the Telemetry supervisor
       PomodoroWeb.Telemetry,
-      # Start the PubSub system
+      {DNSCluster, query: Application.get_env(:pomodoro, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Pomodoro.PubSub},
-      # Start the Endpoint (http/https)
-      PomodoroWeb.Endpoint
       # Start a worker by calling: Pomodoro.Worker.start_link(arg)
-      # {Pomodoro.Worker, arg}
+      # {Pomodoro.Worker, arg},
+      # Start to serve requests, typically the last entry
+      PomodoroWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -27,6 +25,7 @@ defmodule Pomodoro.Application do
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
+  @impl true
   def config_change(changed, _new, removed) do
     PomodoroWeb.Endpoint.config_change(changed, removed)
     :ok
