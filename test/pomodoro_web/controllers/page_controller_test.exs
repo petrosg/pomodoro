@@ -10,15 +10,21 @@ defmodule PomodoroWeb.PageControllerTest do
 
     test "starts a new pomodoro timer", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
-      assert render(view) =~ "<span> Remaining Time: </span> 10 minutes"
+
+      assert render(view) =~
+               "<h2 class=\"text-2xl md:text-2xl lg:text-2xl font-bold mb-20\">\n   Remaining Time: 10 seconds\n    \n  </h2>"
     end
 
     test "change timer starts a new pomodoro timer", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
-      assert render(view) =~ "<span> Remaining Time: </span> 10 minutes"
 
-      assert view |> element("form")
-          |> render_change(%{"timer" => 25 * 60 }) =~ "<span> Remaining Time: </span> 25 minutes"
+      assert render(view) =~
+               "<h2 class=\"text-2xl md:text-2xl lg:text-2xl font-bold mb-20\">\n   Remaining Time: 10 seconds\n    \n  </h2>"
+
+      assert view
+             |> element("form")
+             |> render_change(%{"timer" => 25 * 60}) =~
+               "<h2 class=\"text-2xl md:text-2xl lg:text-2xl font-bold mb-20\">\n   Remaining Time: 25 minutes\n    \n  </h2>"
     end
   end
 end

@@ -12,7 +12,8 @@ defmodule PomodoroWeb.PomodoroLive do
     socket =
       socket
       |> assign_new(:timer, fn -> @ten_minutes end)
-      |> assign_new(:remaining_time, fn -> @ten_minutes end)
+      |> assign_new(:remaining_time, fn -> @ten_seconds end)
+      # |> assign_new(:remaining_time, fn -> @ten_minutes end)
       |> assign_new(:timer_opts, fn -> timer_opts() end)
 
     if connected?(socket), do: count_down_timer()
@@ -22,24 +23,14 @@ defmodule PomodoroWeb.PomodoroLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class={["h-lvh",
+    <div class={["h-lvh text-center",
         @remaining_time > 0 && "bg-green-400 w-screen",
         @remaining_time <= 0 && "bg-red-400 w-screen"
     ]}>
       <CustomComponents.header> Pomodoro Timer </CustomComponents.header>
-      <section class="flex justify-center mt-20 mb-20">
-        <img class="object-scale-down h-52" src="/images/timer.png" alt="" />
-      </section>
-
-      <section class="text-center">
-        <h2  class="text-2xl md:text-2xl lg:text-2xl font-bold mb-20" >
-        <%= cond do %>
-          <% @remaining_time > 0 -> %> Remaining Time: {format_time(@remaining_time)}
-          <% true -> %> Expired!
-        <% end %>
-        </h2>
-        <CustomComponents.timer_select />
-      </section>
+      <CustomComponents.image src="/images/timer.png" alt=""/>
+      <CustomComponents.timer_text remaining_time={@remaining_time} />
+      <CustomComponents.timer_select />
     </div>
     """
   end
