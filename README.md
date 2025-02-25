@@ -24,7 +24,7 @@ Ready to run in production? Please [check the deployment guides](https://hexdocs
 
   - [x] Explore Unit Testing.
   - [ ] Explore using buttons instead of dropdowns.
-  - [ ] Change colors when busy/on break.
+  - [x] Change colors when busy/on break.
   - [ ] Play an audio file when the timer reaches 0.
 
 ## Resources
