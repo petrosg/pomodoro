@@ -26,22 +26,20 @@ defmodule PomodoroWeb.PomodoroLive do
         @remaining_time > 0 && "bg-green-400 w-screen",
         @remaining_time <= 0 && "bg-red-400 w-screen"
     ]}>
+      <CustomComponents.header> Pomodoro Timer </CustomComponents.header>
+      <section class="flex justify-center mt-20 mb-20">
+        <img class="object-scale-down h-52" src="/images/timer.png" alt="" />
+      </section>
 
-    <CustomComponents.header> Pomodoro Timer </CustomComponents.header>
-
-    <section class="flex justify-center mt-20 mb-20">
-     <img class="object-scale-down h-52" src="/images/timer.png" alt="" />
-    </section>
-
-    <section class="text-center">
-      <h2  class="text-2xl md:text-2xl lg:text-2xl font-bold mb-20" >
-      <%= cond do %>
-        <% @remaining_time > 0 -> %> Remaining Time: {format_time(@remaining_time)}
-        <% true -> %> Expired!
-      <% end %>
-      </h2>
-    <CustomComponents.timer_select />
-    </section>
+      <section class="text-center">
+        <h2  class="text-2xl md:text-2xl lg:text-2xl font-bold mb-20" >
+        <%= cond do %>
+          <% @remaining_time > 0 -> %> Remaining Time: {format_time(@remaining_time)}
+          <% true -> %> Expired!
+        <% end %>
+        </h2>
+        <CustomComponents.timer_select />
+      </section>
     </div>
     """
   end
