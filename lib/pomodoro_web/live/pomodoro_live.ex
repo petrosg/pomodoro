@@ -37,29 +37,6 @@ defmodule PomodoroWeb.PomodoroLive do
      |> update_timers(timer)}
   end
 
-  defp timer_opts do
-    [
-      {"10s", @ten_seconds},
-      {"10m", @ten_minutes},
-      {"15m", @fifteen_minutes},
-      {"25m", @twenty_five_minutes}
-    ]
-  end
-
-  defp options_for_timers(assigns) do
-    ~H"""
-    <%= for {text, value} <- timer_opts() do %>
-      <option value={value}><%= text %></option>
-    <% end %>
-    """
-  end
-
-  defp format_time(time) do
-    time
-    |> Timex.Duration.from_seconds()
-    |> Timex.format_duration(:humanized)
-  end
-
   defp count_down_timer() do
     Process.send_after(self(), :tick, 1000)
   end
