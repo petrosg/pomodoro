@@ -1,10 +1,11 @@
 defmodule PomodoroWeb.PomodoroLive do
   use Phoenix.LiveView
 
+  alias PomodoroWeb.CustomComponents
+  import Pomodoro.Timer
+
   @ten_seconds 10
   @ten_minutes 10 * 60
-  @fifteen_minutes 15 * 60
-  @twenty_five_minutes 25 * 60
 
   @impl true
   def mount(_params, _session, socket) do
@@ -43,13 +44,11 @@ defmodule PomodoroWeb.PomodoroLive do
 
   defp update_timers(socket, timer) do
     socket
-    |> update(:timer, fn _ -> timer end)
     |> update(:remaining_time, fn _ -> timer end)
   end
 
-  defp update_timers(socket, timer, remaining_time) do
+  defp update_timers(socket, _timer, remaining_time) do
     socket
-    |> update(:timer, fn _ -> timer end)
     |> update(:remaining_time, fn _ -> remaining_time - 1 end)
   end
 end
