@@ -33,8 +33,10 @@ defmodule PomodoroWeb.CustomComponents do
     <section>
       <h2  class="text-2xl md:text-2xl lg:text-2xl font-bold mb-20" >
       <%= cond do %>
+        <% @remaining_time === nil -> %> Please select from dropdown menu
         <% @remaining_time > 0 -> %> Remaining Time: {Timer.format_time(@remaining_time)}
-        <% true -> %> Expired!
+        <% @remaining_time === 0 -> %> Expired!
+        <% true -> %> Check it!
       <% end %>
       </h2>
     </section>
@@ -47,7 +49,9 @@ defmodule PomodoroWeb.CustomComponents do
         <form phx-change="set-timer">
           <select name="timer" class="border-2 border-gray-300 bg-red-600 text-white m-1 p-3" id="">
               <option value="" disabled selected>Select Timer</option>
-              <option :for={ {text, value} <- Timer.timer_opts()} value={value}> { text } </option>
+              <option :for={ {text, value} <- Timer.timer_opts()} value={value}>
+                { text }
+              </option>
           </select>
         </form>
     </section>
